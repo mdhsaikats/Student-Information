@@ -1,85 +1,111 @@
 #include<stdio.h>
 #include<string.h>
-
-struct studentinformation
+struct info
 {
-   char name[10];
+   char name[50];
    int id;
-   float cgpa
+   float cgpa;
 };
-
-
-void studentInfo()
+void studentInformation(struct info student[10], int i)
 {
 
-    if (10>i)
+    if (i<10)
     {
-        printf("Enter Student %d:\n");
+        printf("Enter Student %d:\n",i + 1);
         printf("Name: ");
         scanf("%s" ,&student[i].name);
         printf("Enter ID:");
         scanf("%d",&student[i].id);
         printf("Enter CGPA:");
         scanf("%f",&student[i].cgpa);
+        printf("-----------------------------\n");
     }else {
-        printf("Maximum Student limit reached");
+        printf("-----------------------------\n");
+        printf("Maximum Student limit reached\n");
+        printf("-----------------------------\n");
     }
     
-
 }
 
-void studentList()
+void studentList( struct info student[10],int n)
 {
+    if (n > 0)
+    {
+        for ( int i = 0; i < n; i++)
+    {
+        printf("Name: %s\nID: %d\nCGPA: %.2f\n",student[i].name , student[i].id , student[i].cgpa);
+        printf("------------\n");
 
+    }
+    }else{
+        printf("---------------------------------\n");
+        printf("No student information avaiable!!\n");
+        printf("---------------------------------\n");
+    }
 }
-
-void individualName()
+void individualName(struct info student[10], int n)
 {
+    char studname[50];
+    printf("Student Name:");
+    scanf("%s",&studname);
 
-}
-
-void exitFunction()
-{
-
+    for (int i = 0; i < n; i++)
+    {
+        if (strcmp(studname, student[i].name) == 0){
+            printf("Name: %s\nID: %d\nCGPA: %.2f\n",student[i].name,student[i].id,student[i].cgpa);
+            printf("------------\n");
+            return;
+        
+        }
+    } 
+        printf("-------------------\n");
+        printf("No student found\n");
+        printf("-------------------\n");
 
 }
 
 int main()
 {
-    struct studentinformation student[10];
-    int choice, i=0;
+    struct info student[10];
+    int choice , i=0;
 
     while (1)
     {
-        printf("1.Enter student information\n2.Show student list\n3.Exit");
+        printf("1.Enter student information\n2.Show student list\n3.Search individual student\n4.Exit\n");
+        printf("Enter your choice: ");
         scanf("%d",&choice);
-
+        printf("---------------------\n");
 
         switch (choice)
         {
         case 1:
 
-            studentInfo();
+            studentInformation(student , i);
+            i++;
             
             break;
         case 2:
-            studentList();    
+            studentList(student , i); 
+
             break;
 
         case 3:
 
-            individualName();
+            individualName(student , i);
 
             break;
 
         case 4:
-
-            exitFunction();
+            printf("*Thank You* :-)\n");
+            printf("---------------------\n");
+            return 0;
 
             break;
 
         default:
+            printf("----------\n");
             printf("Error\n");
+            printf("----------\n");
 
             break;
         }
@@ -87,3 +113,5 @@ int main()
     
    
 }
+
+//saikat
